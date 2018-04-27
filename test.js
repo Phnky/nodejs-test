@@ -15,10 +15,13 @@ var fs = require("fs");
 // the built in http module can be used to create an HTTP server that listens to server ports and gives a response back to the client. The createServer() method is used to create the server.
 http.createServer(function(req, res) {
   // the req arguement represents the request from the client
-  res.writeHead(200, {
-    "Content-Type": "text/html"
-  });
+   res.writeHead(200, {
+     "Content-Type": "text/html"
+  // the first argument '200' is the response code ..which means OK
+  //the second argument is an object containing the response headers
+   });
   res.write("It is currently " + dt.myDateTime());
+
   res.write(req.url);
   // the req object has a property called url that holds part of the url that comes after the domain name.
   // url.parse() will parse the request url into the following obect:
@@ -38,4 +41,5 @@ http.createServer(function(req, res) {
   var q = url.parse(req.url, true).query;
   var txt = q.year + " " + q.month;
   res.end(txt);
+
 }).listen(8080);
